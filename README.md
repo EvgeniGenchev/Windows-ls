@@ -9,6 +9,7 @@
  
  - [tabulate](https://github.com/tabulate/tabulate)==0.8.9
  - [Python](https://www.python.org/)==3.8.1 or higher
+ - [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab)
  
  ## Installation
 
