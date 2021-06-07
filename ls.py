@@ -1,4 +1,5 @@
 import os
+import sys
 from tabulate import tabulate as table
 from datetime import datetime
 
@@ -8,18 +9,31 @@ class colours:
     blue   = '\033[94m'
     green  = '\033[92m'
     yellow = '\033[93m'
-    red    = '\033[91m' 
+    red    = '\033[91m'
     reset  = '\033[0m'
 
 def get_time(f):
     tm = os.stat(f).st_mtime
     r_dt = datetime.fromtimestamp(tm)
     dt = str(r_dt).split('.')[0]
-    
+
     return colours.blue + dt + colours.reset
 
 def get_size(f):
     return colours.yellow + str(os.stat(f).st_size) + colours.reset
+
+args = sys.argv
+
+if len(args) > 1:
+    try:
+        os.chdir(args[1])
+    except FileNotFoundError:
+        print('Folder does not exist!')
+        exit(0)
+    except NotADirectoryError:
+        print(f"{args[1]} is not a folder")
+        exit(0)
+
 
 
 working_dir = os.getcwd()
@@ -42,7 +56,6 @@ for f in dir_files:
         if os.path.isdir(fs[0]):
             dir_files[i][0] = colours.green + dir_files[i][0] + colours.reset
 
-    i += 1        
+    i += 1
 
 print(table(dir_files))
-
