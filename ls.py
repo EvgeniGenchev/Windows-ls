@@ -45,17 +45,20 @@ dir_files = [[f, get_time(f), get_size(f)] for f in files]
 i = 0
 
 for f in dir_files:
+    
     if len(fs := f[0].split('.')) == 2:
         if fs[1] in ['exe', 'sh']:
             dir_files[i][0] = colours.purple + dir_files[i][0] + colours.reset
         elif fs[1] in ['py', 'c', 'cs', 'cpp', 'html', 'css', 'js', 'go', 'java', 'r']:
             dir_files[i][0] = colours.cyan + dir_files[i][0] + colours.reset
-        elif fs[1] in ['md', 'json', 'cfg', 'xml', 'tex', 'txt']:
+        elif fs[1] in ['md', 'json', 'cfg', 'xml', 'tex', 'txt', 'pdf']:
             dir_files[i][0] = colours.red + dir_files[i][0] + colours.reset
     else:
         if os.path.isdir(fs[0]):
             dir_files[i][0] = colours.green + dir_files[i][0] + colours.reset
 
     i += 1
+
+dir_files.sort()
 
 print(table(dir_files))
